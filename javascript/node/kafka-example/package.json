@@ -1,0 +1,15 @@
+{
+    "name": "kafka-example",
+    "version": "1.0.0",
+    "description": "A kafka stream prodcuer and consumer example.",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "andrewjfei",
+    "license": "ISC",
+    "dependencies": {
+        "@confluentinc/kafka-javascript": "^0.2.0"
+    }
+}
