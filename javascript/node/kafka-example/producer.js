@@ -17,19 +17,11 @@ producer.on("ready", () => {
 
             // publish to topic
             producer.produce(
-                // topic
-                "kafka-example",
-
-                // partition (optional)
-                null,
-
-                // event
-                Buffer.from(JSON.stringify({ message: `event ${count}` })),
-                // key (optional)
-                null,
-
-                // timestamp
-                Date.now()
+                "kafka-example", // topic
+                null, // partition (optional)
+                Buffer.from(JSON.stringify({ message: `event ${count}` })), // event
+                null, // key (optional)
+                Date.now() // timestamp
             );
         }, 500);
     } catch (err) {
