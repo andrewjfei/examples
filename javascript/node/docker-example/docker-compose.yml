@@ -1,0 +1,49 @@
+services:
+    # name of service
+    postgresql:
+        # container name
+        container_name: postgresql
+
+        # image to use
+        image: postgres:16-alpine
+
+        # automatically restart the container if it stops
+        restart: always
+
+        # define environment variables
+        environment:
+            POSTGRES_USER: ${POSTGRESQL_USER} # uses environment variable defined in .env
+            POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
+            POSTGRES_DB: ${POSTGRESQL_DB}
+
+        # map storage volume on local machine to container
+        # directory (ensures data persists even if container is removed)
+        volumes:
+            - postgresql-data:/var/lib/postgresql/data
+
+        # map local machine port to container port
+        ports:
+            - "5432:5432"
+
+    service:
+        container_name: service
+
+        # build and use dockerfile image at location
+        build: .
+
+        # built image name and tag
+        image: docker-compose-service:latest
+        restart: always
+        environment:
+            # the port number refers to the postgresql port number (i.e. not the port on the local machine)
+            POSTGRESQL_URL: postgres://${POSTGRESQL_USER}:${POSTGRESQL_PASSWORD}@postgresql:5432/${POSTGRESQL_DB}
+        ports:
+            - "3000:3000"
+
+        # define services current service depends on
+        depends_on:
+            - postgresql
+
+# define named volumes available to services
+volumes:
+    postgresql-data:

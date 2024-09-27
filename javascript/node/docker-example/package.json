@@ -11,9 +11,12 @@
     "author": "andrewjfei",
     "license": "ISC",
     "dependencies": {
-        "express": "^4.21.0"
+        "dotenv": "^16.4.5",
+        "express": "^4.21.0",
+        "pg": "^8.13.0"
     },
     "devDependencies": {
-        "@types/express": "^5.0.0"
+        "@types/express": "^5.0.0",
+        "@types/pg": "^8.11.10"
     }
 }
