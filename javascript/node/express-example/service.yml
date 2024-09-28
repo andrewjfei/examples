@@ -1,0 +1,24 @@
+# api version
+apiVersion: v1
+
+# the type of resource
+kind: Service
+
+# service metadata
+metadata:
+    name: express-example
+
+# service specifications
+spec:
+    # type of serivce (i.e. ClusterIP, NodePort, LoadBalancer, ExternalName)
+    type: NodePort
+
+    # filer pods which should be exposed by this service
+    selector:
+        type: service
+        app: express-example
+
+    # map exposed ports to internal pod container ports
+    ports:
+        - port: 3000 # exposed port
+          targetPort: 3000 # container port

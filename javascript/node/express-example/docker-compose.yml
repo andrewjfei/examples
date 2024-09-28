@@ -1,0 +1,8 @@
+services:
+    service:
+        container_name: service
+        build: .
+        image: express-example-service:example
+        restart: always
+        ports:
+            - "3000:3000"

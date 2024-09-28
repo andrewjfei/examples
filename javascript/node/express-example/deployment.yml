@@ -1,0 +1,46 @@
+# api version of kubernetes
+apiVersion: apps/v1
+
+# define the kubernetes resource which we are creating
+kind: Deployment
+
+# deployment metadata
+metadata:
+  # deployment name
+  name: express-example
+
+  # key value pair to categorise and identify deployment
+  labels:
+    type: service
+    app: express-example
+
+# define desired state of deployment
+spec:
+  # number of replica pods that should be running at any given time
+  replicas: 2
+
+  # identification of which pods the deployment should manage
+  selector:
+
+    # only manage pods which has an "type" label with an "service" value
+    matchLabels:
+      type: service
+      app: express-example
+
+  # template used to create pods
+  template:
+
+    # pod metadata
+    metadata:
+      labels:
+        type: service
+        app: express-example
+
+    # pos specification
+    spec:
+      containers:
+      - name: express
+        image: andrewjfei/examples:express
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000

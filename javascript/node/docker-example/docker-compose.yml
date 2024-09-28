@@ -32,7 +32,7 @@ services:
         build: .
 
         # built image name and tag
-        image: docker-compose-service:latest
+        image: docker-example-service:example
         restart: always
         environment:
             # the port number refers to the postgresql port number (i.e. not the port on the local machine)
