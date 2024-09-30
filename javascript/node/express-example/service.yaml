@@ -20,5 +20,6 @@ spec:
 
     # map exposed ports to internal pod container ports
     ports:
-        - port: 3000 # exposed port
+        - port: 3000 # exposed port within cluster
           targetPort: 3000 # container port
+          nodePort: 30000 # publicly exposed port (only applicable for NodePort service type)
